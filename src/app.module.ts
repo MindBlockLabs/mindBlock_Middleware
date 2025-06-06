@@ -7,6 +7,7 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { UserModule } from './user/user.module';
 import { CustomThrottlerGuard } from './common/guards/throttler.guard';
+import { PuzzleModule } from './puzzle/puzzle.module';
 
 @Module({
   imports: [
@@ -26,6 +27,7 @@ import { CustomThrottlerGuard } from './common/guards/throttler.guard';
       synchronize: true,
     }),
     UserModule,
+    PuzzleModule,
   ],
   controllers: [AppController],
   providers: [
