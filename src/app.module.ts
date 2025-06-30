@@ -9,6 +9,7 @@ import { UserModule } from './user/user.module';
 import { CustomThrottlerGuard } from './common/guards/throttler.guard';
 import { PuzzleModule } from './puzzle/puzzle.module';
 import { RequestLoggerMiddleware } from './middlewares/request-logger.middleware';
+import { RequestContextMiddleware } from './middlewares/request-context.middleware';
 
 @Module({
   imports: [
@@ -42,7 +43,7 @@ import { RequestLoggerMiddleware } from './middlewares/request-logger.middleware
 export class AppModule implements NestModule {
   configure(consumer: MiddlewareConsumer) {
     consumer
-      .apply(RequestLoggerMiddleware)
+      .apply(RequestLoggerMiddleware,RequestContextMiddleware)
       .forRoutes('*');
   }
 }
