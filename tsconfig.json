@@ -16,6 +16,17 @@
     "forceConsistentCasingInFileNames": true,
     "noImplicitAny": true,
     "strictBindCallApply": true,
-    "noFallthroughCasesInSwitch": true
-  }
+    "noFallthroughCasesInSwitch": true,
+    "esModuleInterop": true,
+    "allowJs": true,
+    "types": ["jest", "node"]
+  },
+  "include": [
+    "src/**/*",
+    "test/**/*",
+    "jest.config.js",
+    "**/*.spec.ts",
+    "**/*.test.ts"
+  ],
+  "exclude": ["node_modules", "dist"]
 }

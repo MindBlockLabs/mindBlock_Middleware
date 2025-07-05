@@ -9,8 +9,12 @@ import { UserModule } from './user/user.module';
 import { CustomThrottlerGuard } from './common/guards/throttler.guard';
 import { PuzzleModule } from './puzzle/puzzle.module';
 import { RequestLoggerMiddleware } from './middlewares/request-logger.middleware';
+
 import { AnalyticsEventsModule } from './analytics-events/analytics-events.module';
 import { AnalyticsEventsModule } from './analytics-events/analytics-events.module';
+
+import { RequestContextMiddleware } from './middlewares/request-context.middleware';
+
 
 @Module({
   imports: [
@@ -45,7 +49,7 @@ import { AnalyticsEventsModule } from './analytics-events/analytics-events.modul
 export class AppModule implements NestModule {
   configure(consumer: MiddlewareConsumer) {
     consumer
-      .apply(RequestLoggerMiddleware)
+      .apply(RequestLoggerMiddleware,RequestContextMiddleware)
       .forRoutes('*');
   }
 }
