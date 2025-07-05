@@ -9,6 +9,7 @@ import { UserModule } from './user/user.module';
 import { CustomThrottlerGuard } from './common/guards/throttler.guard';
 import { PuzzleModule } from './puzzle/puzzle.module';
 import { RequestLoggerMiddleware } from './middlewares/request-logger.middleware';
+import { AnalyticsEventsModule } from './analytics-events/analytics-events.module';
 
 @Module({
   imports: [
@@ -29,6 +30,7 @@ import { RequestLoggerMiddleware } from './middlewares/request-logger.middleware
     }),
     UserModule,
     PuzzleModule,
+    AnalyticsEventsModule,
   ],
   controllers: [AppController],
   providers: [
