@@ -10,6 +10,7 @@ import { CustomThrottlerGuard } from './common/guards/throttler.guard';
 import { PuzzleModule } from './puzzle/puzzle.module';
 import { RequestLoggerMiddleware } from './middlewares/request-logger.middleware';
 import { AnalyticsEventsModule } from './analytics-events/analytics-events.module';
+import { AnalyticsEventsModule } from './analytics-events/analytics-events.module';
 
 @Module({
   imports: [

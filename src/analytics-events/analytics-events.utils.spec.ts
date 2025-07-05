@@ -1,4 +1,3 @@
-
 type AnalyticsEvent = {
   userId: string;
   type: string;
@@ -8,7 +7,7 @@ type AnalyticsEvent = {
   ip?: string;
 };
 
-function buildAnalyticsEvent(
+function buildAnalyticsEventForTest(
   userId: string,
   type: string,
   metadata: Record<string, any>,
@@ -33,7 +32,7 @@ function assert(condition: boolean, message: string) {
 
 // Run all test cases
 function runTests() {
-  const base = buildAnalyticsEvent('u1', 'signup', { source: 'referral' });
+  const base = buildAnalyticsEventForTest('u1', 'signup', { source: 'referral' });
 
   assert(base.userId === 'u1', 'userId should match');
   assert(base.type === 'signup', 'type should match');
@@ -42,7 +41,7 @@ function runTests() {
   assert(!base.requestId, 'requestId should be undefined when not passed');
   assert(!base.ip, 'ip should be undefined when not passed');
 
-  const withCtx = buildAnalyticsEvent(
+  const withCtx = buildAnalyticsEventForTest(
     'u2',
     'click',
     { element: 'cta' },

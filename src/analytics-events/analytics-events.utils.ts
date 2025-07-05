@@ -1,14 +1,3 @@
-// analytics-event.util.ts
-
-type AnalyticsEvent = {
-  userId: string;
-  type: string;
-  metadata: Record<string, any>;
-  timestamp: string;
-  requestId?: string;
-  ip?: string;
-};
-
 /**
  * Builds a consistent analytics event object for tracking purposes.
  */
