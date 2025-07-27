@@ -11,9 +11,8 @@ import { PuzzleModule } from './puzzle/puzzle.module';
 import { RequestLoggerMiddleware } from './middlewares/request-logger.middleware';
 
 import { AnalyticsEventsModule } from './analytics-events/analytics-events.module';
-import { AnalyticsEventsModule } from './analytics-events/analytics-events.module';
-
 import { RequestContextMiddleware } from './middlewares/request-context.middleware';
+import { TaskCleanupModule } from './task-cleanup/task-cleanup.module';
 
 
 @Module({
@@ -36,6 +35,7 @@ import { RequestContextMiddleware } from './middlewares/request-context.middlewa
     UserModule,
     PuzzleModule,
     AnalyticsEventsModule,
+    TaskCleanupModule,
   ],
   controllers: [AppController],
   providers: [
