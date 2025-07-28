@@ -1,7 +1,7 @@
 import { Controller, Get, Post, Logger, HttpCode, HttpStatus } from "@nestjs/common"
 import type { LeaderboardWorker } from "../workers/leaderboard.worker"
 import type { LeaderboardService } from "../services/leaderboard.service"
-import type { RedisService } from "../services/redis.service"
+import type { LeaderboardRedisService } from "../services/redis.service"
 import type { ProcessedLeaderboardData, SyncResult, WorkerStatus } from "../interfaces/leaderboard.interface"
 
 @Controller("leaderboard")
@@ -11,7 +11,7 @@ export class LeaderboardController {
   constructor(
     private readonly leaderboardWorker: LeaderboardWorker,
     private readonly leaderboardService: LeaderboardService,
-    private readonly redisService: RedisService,
+    private readonly redisService: LeaderboardRedisService,
   ) {}
 
   @Get("status")

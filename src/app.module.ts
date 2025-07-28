@@ -13,6 +13,7 @@ import { RequestLoggerMiddleware } from './middlewares/request-logger.middleware
 import { AnalyticsEventsModule } from './analytics-events/analytics-events.module';
 import { RequestContextMiddleware } from './middlewares/request-context.middleware';
 import { TaskCleanupModule } from './task-cleanup/task-cleanup.module';
+import { RedisModule } from './redis/redis.module';
 
 
 @Module({
@@ -32,6 +33,7 @@ import { TaskCleanupModule } from './task-cleanup/task-cleanup.module';
       autoLoadEntities: true,
       synchronize: true,
     }),
+    RedisModule,
     UserModule,
     PuzzleModule,
     AnalyticsEventsModule,
