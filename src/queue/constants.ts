@@ -4,9 +4,11 @@ export const QUEUE_NAMES = {
   EVENT_TRACKING: "event-tracking",
 }
 
+// Redis options are now managed by the centralized RedisService
+// This file is kept for backward compatibility but should be deprecated
 export const REDIS_OPTIONS = {
-  host: "localhost", // Replace with your Redis host
-  port: 6379, // Replace with your Redis port
-  password: process.env.REDIS_PASSWORD, // If your Redis requires authentication
+  host: process.env.REDIS_HOST || "localhost",
+  port: parseInt(process.env.REDIS_PORT || "6379", 10),
+  password: process.env.REDIS_PASSWORD,
   maxRetriesPerRequest: null, // Recommended for ioredis
 }

@@ -3,7 +3,7 @@ import { Cron } from "@nestjs/schedule"
 import type { ConfigService } from "@nestjs/config"
 import type { LeaderboardService } from "../services/leaderboard.service"
 import type { BackendApiService } from "../services/backend-api.service"
-import type { RedisService } from "../services/redis.service"
+import type { LeaderboardRedisService } from "../services/redis.service"
 import type { SyncResult } from "../interfaces/leaderboard.interface"
 
 @Injectable()
@@ -16,7 +16,7 @@ export class LeaderboardWorker {
     private readonly configService: ConfigService,
     private readonly leaderboardService: LeaderboardService,
     private readonly backendApiService: BackendApiService,
-    private readonly redisService: RedisService,
+    private readonly redisService: LeaderboardRedisService,
   ) {
     this.syncInterval = this.configService.get("LEADERBOARD_SYNC_INTERVAL", "*/5 * * * *") // Default: every 5 minutes
   }
