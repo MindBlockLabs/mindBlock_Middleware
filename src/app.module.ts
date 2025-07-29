@@ -14,6 +14,8 @@ import { AnalyticsEventsModule } from './analytics-events/analytics-events.modul
 import { RequestContextMiddleware } from './middlewares/request-context.middleware';
 import { TaskCleanupModule } from './task-cleanup/task-cleanup.module';
 import { RedisModule } from './redis/redis.module';
+import { HealthModule } from './health/health.module';
+
 
 
 @Module({
@@ -38,6 +40,7 @@ import { RedisModule } from './redis/redis.module';
     PuzzleModule,
     AnalyticsEventsModule,
     TaskCleanupModule,
+    HealthModule,
   ],
   controllers: [AppController],
   providers: [
