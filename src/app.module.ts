@@ -9,22 +9,24 @@ import { UserModule } from './user/user.module';
 import { CustomThrottlerGuard } from './common/guards/throttler.guard';
 import { PuzzleModule } from './puzzle/puzzle.module';
 import { RequestLoggerMiddleware } from './middlewares/request-logger.middleware';
-
+import { AuthMiddleware } from './auth/auth.middleware';
 import { AnalyticsEventsModule } from './analytics-events/analytics-events.module';
 import { RequestContextMiddleware } from './middlewares/request-context.middleware';
 import { TaskCleanupModule } from './task-cleanup/task-cleanup.module';
 import { RedisModule } from './redis/redis.module';
 import { HealthModule } from './health/health.module';
-
-
+import { AuthModule } from './auth/auth.module';
 
 @Module({
   imports: [
     ConfigModule.forRoot({ isGlobal: true }),
-    ThrottlerModule.forRoot([{
-      ttl: 60, // Time window in seconds
-      limit: 10, // Maximum number of requests per time window
-    }]),
+    ThrottlerModule.forRoot([
+      {
+        ttl: 60,
+        limit: 10,
+      },
+    ]),
+    AuthModule,
     TypeOrmModule.forRoot({
       type: 'postgres',
       host: process.env.DB_HOST,
@@ -54,7 +56,7 @@ import { HealthModule } from './health/health.module';
 export class AppModule implements NestModule {
   configure(consumer: MiddlewareConsumer) {
     consumer
-      .apply(RequestLoggerMiddleware,RequestContextMiddleware)
+      .apply(RequestLoggerMiddleware, RequestContextMiddleware, AuthMiddleware)
       .forRoutes('*');
   }
 }
