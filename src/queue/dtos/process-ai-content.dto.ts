@@ -7,7 +7,7 @@ export class ProcessAiContentDto {
 
   @IsString()
   @IsNotEmpty()
-  contentType: string // e.g., 'text', 'image', 'video'
+  contentType: string // e.g., 'texts', 'images', 'videos'
 
   @IsObject()
   @IsOptional()
