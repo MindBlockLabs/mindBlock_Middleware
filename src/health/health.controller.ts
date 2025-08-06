@@ -1,14 +1,10 @@
-import {
-  Controller,
-  Get,
-} from '@nestjs/common';
-import {
-  HealthCheck,
-  HealthCheckService,
-  TypeOrmHealthIndicator,
-} from '@nestjs/terminus';
+
+import { Controller, Get } from '@nestjs/common';
+import { ApiTags, ApiOperation, ApiResponse } from '@nestjs/swagger';
+import { HealthCheck, HealthCheckService, TypeOrmHealthIndicator } from '@nestjs/terminus';
 import { HealthIndicatorResult } from './indicators/redis.health';
 
+@ApiTags('Health')
 @Controller('health')
 export class HealthController {
   constructor(
@@ -18,6 +14,8 @@ export class HealthController {
   ) {}
 
   @Get()
+  @ApiOperation({ summary: 'Health check for dependencies' })
+  @ApiResponse({ status: 200, description: 'Returns health status for dependencies.' })
   @HealthCheck()
   async check() {
     const results = await this.health.check([
