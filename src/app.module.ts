@@ -16,8 +16,6 @@ import { TaskCleanupModule } from './task-cleanup/task-cleanup.module';
 import { RedisModule } from './redis/redis.module';
 import { HealthModule } from './health/health.module';
 import { AuthModule } from './auth/auth.module';
-import { GatewayModule } from './gateway/gateway.module';
-import { RateLimitMiddleware } from './gateway/middlewares/rate-limit.middleware';
 
 @Module({
   imports: [
@@ -29,7 +27,6 @@ import { RateLimitMiddleware } from './gateway/middlewares/rate-limit.middleware
       },
     ]),
     AuthModule,
-    GatewayModule,
     TypeOrmModule.forRoot({
       type: 'postgres',
       host: process.env.DB_HOST,
@@ -59,12 +56,7 @@ import { RateLimitMiddleware } from './gateway/middlewares/rate-limit.middleware
 export class AppModule implements NestModule {
   configure(consumer: MiddlewareConsumer) {
     consumer
-      .apply(
-        RateLimitMiddleware,
-        RequestLoggerMiddleware,
-        RequestContextMiddleware,
-        AuthMiddleware,
-      )
+      .apply(RequestLoggerMiddleware, RequestContextMiddleware, AuthMiddleware)
       .forRoutes('*');
   }
 }
